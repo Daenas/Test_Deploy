@@ -8,9 +8,22 @@
 </head>
 
 <body>
-    {% for item in items %}
-    <h1>{{item.content}}</h1>
-    {% endfor %}
+    <div class=items>
+        {% for item in item %}
+        <h1>{{item.content}}</h1>
+        <form action="{% url 'delete_item' item.id %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-danger" value="Remove comment"></input>
+        </form>
+        {% endfor %}
+    </div>
+    <div class=form>
+        <form action="{% url 'index' %}" method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit" name="save">Submit</button>
+        </form>
+    </div>
 </body>
 
 </html>
